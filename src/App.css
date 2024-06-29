@@ -4,15 +4,44 @@
   padding: 2rem;
   text-align: center;
 }
+
+main {
+  width: 320px;
+  background-color: #f5f5f5;
+  padding: 33.28px 34.56px 33.92px 34.56px;
+  border-radius: 10px;
+  color: #4a4e74;
+  font-size: 13.107px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.393px;
+  text-align: center;
+}
+
+main > p {
+  margin-bottom: 25px;
+}
+
 .dice-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
+  gap: 17px;
+  margin-bottom: 26px;
 }
 
 .die {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1;
   background-color: white;
-  color: black;
-  text-align: center;
-  padding: 10px;
+  color: #2b283a;
+  font-family: Karla;
+  font-size: 20.589px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  border-radius: 3.813px;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
 }
