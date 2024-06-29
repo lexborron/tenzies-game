@@ -4,3 +4,15 @@
   padding: 2rem;
   text-align: center;
 }
+.dice-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.die {
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding: 10px;
+}
