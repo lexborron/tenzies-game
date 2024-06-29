@@ -5,21 +5,48 @@ import "./App.css";
 
 function App() {
   const [tenzies, setTenzies] = useState(false);
-  // test array
-  const [dice, setDice] = useState([
-    { value: 1 },
-    { value: 2 },
-    { value: 3 },
-    { value: 6 },
-    { value: 3 },
-    { value: 1 },
-    { value: 2 },
-    { value: 5 },
-    { value: 6 },
-    { value: 1 }
-  ]);
 
-  const diceElements = dice.map((die) => <Die value={die.value} />);
+  const [dice, setDice] = useState(allNewDice());
+
+  function randomDieValue() {
+    return Math.ceil(Math.random() * 6);
+  }
+
+  function allNewDice() {
+    const newArray = [];
+    for (let i = 0; i < 10; i++) {
+      const newDie = {
+        id: i + 1,
+        value: randomDieValue(),
+        held: false
+      };
+      newArray.push(newDie);
+    }
+    return newArray;
+  }
+
+  function rollUnheldDice() {
+    if (!tenzies) {
+      setDice((oldDice) =>
+        oldDice.map((die, i) =>
+          die.held ? die : { id: i + 1, value: randomDieValue(), held: false }
+        )
+      );
+    } else {
+      setDice(allNewDice());
+      setTenzies(false);
+    }
+  }
+
+  function holdDie(id) {
+    setDice((prevDice) =>
+      prevDice.map((die) => (die.id === id ? { ...die, held: !die.held } : die))
+    );
+  }
+
+  const diceElements = dice.map((die) => (
+    <Die key={die.id} {...die} hold={() => holdDie(die.id)} />
+  ));
 
   return (
     <main>
@@ -30,7 +57,9 @@ function App() {
         current value between rolls.
       </p>
       <div className="dice-container">{diceElements}</div>
-      <button>{tenzies ? "Reset Game" : "Roll"}</button>
+      <button onClick={rollUnheldDice}>
+        {tenzies ? "Reset Game" : "Roll"}
+      </button>
     </main>
   );
 }
