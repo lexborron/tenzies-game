@@ -1,6 +1,6 @@
-function Die({ value, hold, held }) {
+function Die({ value, hold, isHeld }) {
   const styles = {
-    backgroundColor: held ? "#59E391" : "#ffffff"
+    backgroundColor: isHeld ? "#59E391" : "#ffffff"
   };
   return (
     <div className="die" onClick={hold} style={styles}>
